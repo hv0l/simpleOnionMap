@@ -1,6 +1,8 @@
 import sys
 import subprocess
 from stem.control import Controller
+from flask import Flask, render_template, request, Response
+import os
 from getpass import getpass
 
 def scan_onion(onion_address, scan_type):
@@ -48,3 +50,33 @@ if __name__ == '__main__':
 
     scan_type = input('\033[94mEnter the number for your scan choice: \033[0m').strip()
     scan_onion(onion_address, scan_type)
+    
+app = Flask(__name__)
+
+@app.route("/", methods=["GET"])
+def index():
+    return render_template("index.html")
+
+@app.route("/scan", methods=["POST"])
+def scan():
+    onion_url = request.form.get("onion_url")
+    scan_type = request.form.get("scan_type")
+
+    scan_options = {
+        "stealth": "-sS",
+        "quick": "",
+        "comprehensive": "-A",
+    }
+
+    # Ensure the scan_type is valid
+    if scan_type not in scan_options:
+        return "Invalid scan type.", 400
+
+    # Call the scan_onion function
+    output = scan_onion(onion_url, scan_options[scan_type])
+
+    # Return the output as plain text
+    return Response(output, content_type="text/plain")
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)   
