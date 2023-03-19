@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onion Scanner</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #eee;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border: 1px solid #555;
+            background-color: #333;
+            color: #eee;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #555;
+            border: none;
+            color: #eee;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Onion Scanner</h1>
+        <form action="/scan" method="post">
+            <label for="onion_url">Onion URL:</label>
+            <input type="text" id="onion_url" name="onion_url" required>
+            <label for="scan_type">Scan Type:</label>
+            <select id="scan_type" name="scan_type">
+                <option value="stealth">Stealth Scan (-sS)</option>
+                <option value="quick">Quick Scan (no options)</option>
+                <option value="comprehensive">Comprehensive Scan (-A)</option>
+            </select>
+            <input type="submit" value="Scan">
+        </form>
+    </div>
+</body>
+</html>
