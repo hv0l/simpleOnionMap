@@ -19,7 +19,7 @@ Onion Scanner is a Python script that performs port scans using Nmap on Onion we
 
 Run the script with the command:
 
-sudo python3 onion_scan.py
+```sudo python3 onion_scan.py```
 
 
 The script will guide you through the following steps:
